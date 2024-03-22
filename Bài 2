@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <math.h>
+
+// Hàm kiểm tra xem một số có phải là số chính phương không
+int KtSoChinhPhuong(int number) {
+    int canBacHai = sqrt(number);
+    return (canBacHai * canBacHai == number);
+}
+
+// Hàm đếm số chính phương nhỏ hơn n
+int demSoChinhPhuong(int n) {
+    int dem = 0;
+    for (int i = 1; i < n; i++) {
+        if (KtSoChinhPhuong(i)) {
+            dem++;
+        }
+    }
+    return dem;
+}
+
+int main() {
+    int n;
+
+    // Đọc số nguyên dương n từ input standard
+    scanf("%d", &n);
+
+    // Kiểm tra n có lớn hơn 0 không
+    if (n <= 0) {
+        printf("So ban nhap khong hop le. Vui long nhap mot so nguyen duong.\n");
+        return 1; // Kết thúc chương trình với mã lỗi 1
+    }
+
+    printf("Cac so chinh phuong nho hon %d la:\n", n);
+
+    // In ra các số chính phương nhỏ hơn n
+    for (int i = 1; i < n; i++) {
+        if (KtSoChinhPhuong(i)) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+
+    // Đếm số lượng số chính phương nhỏ hơn n và in ra kết quả
+    int demSo = demSoChinhPhuong(n);
+    printf("So luong so chinh phuong nho hon %d la: %d\n", n, demSo);
+
+    return 0;
+}
